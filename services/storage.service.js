@@ -2,7 +2,12 @@ import { homedir } from "os";
 import { join } from "path";
 import { promises } from "fs";
 
-const filePath = join(homedir(), "../weather-data.json");
+const filePath = join(homedir(), "weather-data.json");
+const TOKEN_DICTIONARY = {
+	token: 'token',
+	lat: 'lat',
+	lon: 'lon'
+};
 
 const isExist = async (path) => {
 	try {
@@ -16,7 +21,7 @@ const isExist = async (path) => {
 const getKeyValue = async (key) => {
 	if (await isExist(filePath)) {
 		const file = await promises.readFile(filePath);
-		data = JSON.parse(file);
+		const data = JSON.parse(file);
 		return data[key];
 	}
 	return undefined;
@@ -32,4 +37,4 @@ const saveKeyValue = async (key, value) => {
 	await promises.writeFile(filePath, JSON.stringify(data));
 };
 
-export { saveKeyValue, getKeyValue };
+export { saveKeyValue, getKeyValue, TOKEN_DICTIONARY };
