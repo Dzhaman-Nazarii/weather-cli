@@ -4,9 +4,9 @@ import { promises } from "fs";
 
 const filePath = join(homedir(), "weather-data.json");
 const TOKEN_DICTIONARY = {
-	token: 'token',
-	lat: 'lat',
-	lon: 'lon'
+	token: "token",
+	lat: "lat",
+	lon: "lon",
 };
 
 const isExist = async (path) => {
